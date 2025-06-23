@@ -40,11 +40,171 @@ interface MarketAnalysis {
   }>;
 }
 
+// Complete list of Thai provinces
+const thailandProvinces = {
+  th: [
+    'กรุงเทพมหานคร',
+    'กระบี่',
+    'กาญจนบุรี',
+    'กาฬสินธุ์',
+    'กำแพงเพชร',
+    'ขอนแก่น',
+    'จันทบุรี',
+    'ฉะเชิงเทรา',
+    'ชลบุรี',
+    'ชัยนาท',
+    'ชัยภูมิ',
+    'ชุมพร',
+    'เชียงราย',
+    'เชียงใหม่',
+    'ตรัง',
+    'ตราด',
+    'ตาก',
+    'นครนายก',
+    'นครปฐม',
+    'นครพนม',
+    'นครราชสีมา',
+    'นครศรีธรรมราช',
+    'นครสวรรค์',
+    'นนทบุรี',
+    'นราธิวาส',
+    'น่าน',
+    'บึงกาฬ',
+    'บุรีรัมย์',
+    'ปทุมธานี',
+    'ประจวบคีรีขันธ์',
+    'ปราจีนบุรี',
+    'ปัตตานี',
+    'พระนครศรีอยุธยา',
+    'พังงา',
+    'พัทลุง',
+    'พิจิตร',
+    'พิษณุโลก',
+    'เพชรบุรี',
+    'เพชรบูรณ์',
+    'แพร่',
+    'ภูเก็ต',
+    'มหาสารคาม',
+    'มุกดาหาร',
+    'แม่ฮ่องสอน',
+    'ยโสธร',
+    'ยะลา',
+    'ร้อยเอ็ด',
+    'ระนอง',
+    'ระยอง',
+    'ราชบุรี',
+    'ลพบุรี',
+    'ลำปาง',
+    'ลำพูน',
+    'เลย',
+    'ศรีสะเกษ',
+    'สกลนคร',
+    'สงขลา',
+    'สตูล',
+    'สมุทรปราการ',
+    'สมุทรสงคราม',
+    'สมุทรสาคร',
+    'สระแก้ว',
+    'สระบุรี',
+    'สิงห์บุรี',
+    'สุโขทัย',
+    'สุพรรณบุรี',
+    'สุราษฎร์ธานี',
+    'สุรินทร์',
+    'หนองคาย',
+    'หนองบัวลำภู',
+    'อ่างทอง',
+    'อำนาจเจริญ',
+    'อุดรธานี',
+    'อุตรดิตถ์',
+    'อุทัยธานี',
+    'อุบลราชธานี'
+  ],
+  en: [
+    'Bangkok',
+    'Krabi',
+    'Kanchanaburi',
+    'Kalasin',
+    'Kamphaeng Phet',
+    'Khon Kaen',
+    'Chanthaburi',
+    'Chachoengsao',
+    'Chonburi',
+    'Chai Nat',
+    'Chaiyaphum',
+    'Chumphon',
+    'Chiang Rai',
+    'Chiang Mai',
+    'Trang',
+    'Trat',
+    'Tak',
+    'Nakhon Nayok',
+    'Nakhon Pathom',
+    'Nakhon Phanom',
+    'Nakhon Ratchasima',
+    'Nakhon Si Thammarat',
+    'Nakhon Sawan',
+    'Nonthaburi',
+    'Narathiwat',
+    'Nan',
+    'Bueng Kan',
+    'Buriram',
+    'Pathum Thani',
+    'Prachuap Khiri Khan',
+    'Prachinburi',
+    'Pattani',
+    'Phra Nakhon Si Ayutthaya',
+    'Phang Nga',
+    'Phatthalung',
+    'Phichit',
+    'Phitsanulok',
+    'Phetchaburi',
+    'Phetchabun',
+    'Phrae',
+    'Phuket',
+    'Maha Sarakham',
+    'Mukdahan',
+    'Mae Hong Son',
+    'Yasothon',
+    'Yala',
+    'Roi Et',
+    'Ranong',
+    'Rayong',
+    'Ratchaburi',
+    'Lopburi',
+    'Lampang',
+    'Lamphun',
+    'Loei',
+    'Sisaket',
+    'Sakon Nakhon',
+    'Songkhla',
+    'Satun',
+    'Samut Prakan',
+    'Samut Songkhram',
+    'Samut Sakhon',
+    'Sa Kaeo',
+    'Saraburi',
+    'Sing Buri',
+    'Sukhothai',
+    'Suphan Buri',
+    'Surat Thani',
+    'Surin',
+    'Nong Khai',
+    'Nong Bua Lam Phu',
+    'Ang Thong',
+    'Amnat Charoen',
+    'Udon Thani',
+    'Uttaradit',
+    'Uthai Thani',
+    'Ubon Ratchathani'
+  ]
+};
+
 const content = {
   th: {
     title: 'แนวโน้มตลาดอสังหาริมทรัพย์',
     subtitle: 'วิเคราะห์แนวโน้มและสถิติตลาดอสังหาริมทรัพย์จากข้อมูลจริง',
-    selectLocation: 'เลือกพื้นที่',
+    selectLocation: 'เลือกจังหวัด',
     selectPropertyType: 'เลือกประเภททรัพย์สิน',
     selectTimeframe: 'เลือกช่วงเวลา',
     viewTrends: 'ดูแนวโน้ม',
@@ -64,13 +224,7 @@ const content = {
     refreshData: 'รีเฟรชข้อมูล',
     dataLastUpdated: 'ข้อมูลล่าสุด',
     locations: {
-      all: 'ทุกพื้นที่',
-      bangkok: 'กรุงเทพมหานคร',
-      nonthaburi: 'นนทบุรี',
-      pathum_thani: 'ปทุมธานี',
-      samut_prakan: 'สมุทรปราการ',
-      chiang_mai: 'เชียงใหม่',
-      phuket: 'ภูเก็ต'
+      all: 'ทุกจังหวัด'
     },
     propertyTypes: {
       all: 'ทั้งหมด',
@@ -91,7 +245,7 @@ const content = {
   en: {
     title: 'Real Estate Market Trends',
     subtitle: 'Analyze market trends and real estate statistics from real data',
-    selectLocation: 'Select Location',
+    selectLocation: 'Select Province',
     selectPropertyType: 'Select Property Type',
     selectTimeframe: 'Select Timeframe',
     viewTrends: 'View Trends',
@@ -111,13 +265,7 @@ const content = {
     refreshData: 'Refresh Data',
     dataLastUpdated: 'Data last updated',
     locations: {
-      all: 'All Areas',
-      bangkok: 'Bangkok',
-      nonthaburi: 'Nonthaburi',
-      pathum_thani: 'Pathum Thani',
-      samut_prakan: 'Samut Prakan',
-      chiang_mai: 'Chiang Mai',
-      phuket: 'Phuket'
+      all: 'All Provinces'
     },
     propertyTypes: {
       all: 'All Types',
@@ -357,6 +505,10 @@ const MarketTrendsForm: React.FC<MarketTrendsFormProps> = ({ language, onBack })
     setIsLoading(false);
   };
 
+  const getProvinces = () => {
+    return thailandProvinces[language];
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 p-4">
       <div className="max-w-6xl mx-auto">
@@ -431,12 +583,11 @@ const MarketTrendsForm: React.FC<MarketTrendsFormProps> = ({ language, onBack })
                 >
                   <option value="">{currentContent.selectLocation}</option>
                   <option value="all">{currentContent.locations.all}</option>
-                  <option value="bangkok">{currentContent.locations.bangkok}</option>
-                  <option value="nonthaburi">{currentContent.locations.nonthaburi}</option>
-                  <option value="pathum_thani">{currentContent.locations.pathum_thani}</option>
-                  <option value="samut_prakan">{currentContent.locations.samut_prakan}</option>
-                  <option value="chiang_mai">{currentContent.locations.chiang_mai}</option>
-                  <option value="phuket">{currentContent.locations.phuket}</option>
+                  {getProvinces().map((province, index) => (
+                    <option key={index} value={province}>
+                      {province}
+                    </option>
+                  ))}
                 </select>
               </div>
 
